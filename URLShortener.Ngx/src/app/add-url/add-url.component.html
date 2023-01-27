@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Add new URL</h1>
+
+<mat-dialog-content class="mat-typography">
+    <p>What's your URL to short?</p>
+    <mat-form-field appearance="fill">
+      <mat-label>URL</mat-label>
+      <input
+        matInput
+        placeholder="Original URL"
+        required
+        type="url"
+        [formControl]="originalUrl"
+      />
+      <mat-error *ngIf="originalUrl!.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>No Thanks</button>
+    <button mat-button [disabled]="originalUrl.invalid" [mat-dialog-close]="originalUrl.value">
+        Create
+    </button>
+</mat-dialog-actions>

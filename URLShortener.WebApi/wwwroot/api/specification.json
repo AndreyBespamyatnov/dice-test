@@ -1,0 +1,175 @@
+{
+  "x-generator": "NSwag v13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))",
+  "swagger": "2.0",
+  "info": {
+    "title": "My Title",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/Url": {
+      "post": {
+        "tags": [
+          "Url"
+        ],
+        "operationId": "Url_Create",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateShortUrlRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateShortUrlResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Url"
+        ],
+        "operationId": "Url_Get",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "pageNumber",
+            "in": "query",
+            "format": "int32",
+            "x-nullable": false
+          },
+          {
+            "type": "integer",
+            "name": "pageSize",
+            "in": "query",
+            "format": "int32",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ListUrlsResponseOfUrl"
+            }
+          }
+        }
+      }
+    },
+    "/{shortUrl}": {
+      "get": {
+        "tags": [
+          "Url"
+        ],
+        "operationId": "Url_Lookup",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "shortUrl",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateShortUrlResponse": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "$ref": "#/definitions/Url"
+        }
+      }
+    },
+    "Url": {
+      "type": "object",
+      "required": [
+        "id",
+        "originalUrl",
+        "shortUrl",
+        "createdAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "guid"
+        },
+        "originalUrl": {
+          "type": "string"
+        },
+        "shortUrl": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "CreateShortUrlRequest": {
+      "type": "object",
+      "required": [
+        "originalUrl"
+      ],
+      "properties": {
+        "originalUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "ListUrlsResponseOfUrl": {
+      "type": "object",
+      "required": [
+        "data",
+        "totalCount"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Url"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}
