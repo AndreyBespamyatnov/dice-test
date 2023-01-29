@@ -63,7 +63,8 @@ void ConfigureServices(IServiceCollection services, IConfiguration cfg)
         options.AddPolicy("AllowSpecificOrigin", corsPolicyBuilder =>
         {
             var origins = new List<string>() {
-                "http://localhost:4200"
+                "http://localhost:4200",
+                "https://ambitious-bay-08b8f0f03.2.azurestaticapps.net"
             };
 
             corsPolicyBuilder.WithOrigins(origins.ToArray())
