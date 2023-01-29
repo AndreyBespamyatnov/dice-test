@@ -7,7 +7,9 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  getSourceUrl() {
-    return environment.sourceUrl;
-  } 
+  sourceUrl: string;
+
+  constructor() {
+    this.sourceUrl = environment.sourceUrl;
+  }
 }
