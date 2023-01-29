@@ -26,7 +26,7 @@ namespace URLShortener.Application.Queries
 
         public async Task<ListUrlsResponse<Url>> Handle(ListUrlsQuery request, CancellationToken cancellationToken)
         {
-            var skip = request.PageNumber != 0 ? (request.PageNumber - 1) * request.PageSize : 0;
+            var skip = request.PageNumber * request.PageSize;
             var take = request.PageSize;
 
             var urls = await _repository.GetUrls(skip, take, cancellationToken);
