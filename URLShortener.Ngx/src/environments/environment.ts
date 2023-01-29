@@ -1,4 +1,5 @@
 export const environment = {
     production: true,
-    api: ''
+    api: '',
+    sourceUrl: 'https://github.com/AndreyBespamyatnov/dice-test'
 };
