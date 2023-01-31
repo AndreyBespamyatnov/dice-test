@@ -68,6 +68,10 @@ export class ListUrlComponent implements OnInit {
         .createShortUrl(originalUrl!)
         .subscribe((response) => {
           if(response.url) {
+            if (this.dataSource.data.some(x => x.id == response.url?.id)){
+              return;
+            }
+
             this.dataSource.data = [response.url, ...this.dataSource.data]
             this.totalCount = this.totalCount + 1;
             this.snackBar.open(

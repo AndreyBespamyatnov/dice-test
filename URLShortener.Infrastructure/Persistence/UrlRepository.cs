@@ -22,6 +22,7 @@ public class UrlRepository : IUrlRepository
     public async Task<(List<Url> urls, int totalCount)> GetUrls(int skip, int take, CancellationToken cancellationToken)
     {
         var urls = await _context.Urls
+            .OrderByDescending(x => x.CreatedAt)
             .Skip(skip)
             .Take(take)
             .ToListAsync(cancellationToken: cancellationToken);
