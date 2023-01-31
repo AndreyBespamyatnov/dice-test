@@ -7,8 +7,6 @@ public class UrlShortenerDbContext : DbContext, IUrlShortenerDbContext
 {
     public UrlShortenerDbContext()
     {
-        Database.EnsureDeleted();
-        Database.EnsureCreated();
     }
 
     public UrlShortenerDbContext(DbContextOptions<UrlShortenerDbContext> options)
